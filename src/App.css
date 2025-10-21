@@ -1,3 +1,11 @@
+:root {
+  --azulPrincipal: #007bff;
+  --azulDegradado: linear-gradient(270deg, #004A99 0%, #007BFF 100%);
+  --rojoRealce: #DC3545; 
+
+  --fuentePrincipal: 'Source Sans 3', sans-serif;
+}
+
 .App {
   text-align: center;
 }
