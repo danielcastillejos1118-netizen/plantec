@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;700&display=swap');
 .login-container {
     display: flex;
     justify-content: center;
@@ -28,6 +29,7 @@
     font-size: 26px;
     color: #007bff;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 label {
@@ -45,6 +47,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 15px;
+    font-family: 'Source Sans 3', sans-serif;
 }
 
 .forgot {
@@ -65,6 +68,8 @@ input {
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 500;
 }
 
 .btn-login:hover {
