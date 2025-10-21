@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import "./SignUp.css";
+import logo from "../assets/logo.jpg";
 
 export default function SignUp() {
   return (
     <div className="signup-container">
       <div className="signup-box">
         <img
-          src="/logo.jpg"
+          src={logo}
           alt="Logo"
           className="logo"
         />
