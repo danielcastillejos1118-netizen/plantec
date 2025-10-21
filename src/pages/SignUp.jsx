@@ -6,7 +6,7 @@ export default function SignUp() {
     <div className="signup-container">
       <div className="signup-box">
         <img
-          src="/logo.png"
+          src="/logo.jpg"
           alt="Logo"
           className="logo"
         />
