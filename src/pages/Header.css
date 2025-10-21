@@ -1,0 +1,23 @@
+@import "../App.css";
+
+.header-container {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-tittle {
+    font-family: var(--fuenteLogo);
+    font-size: 24px;
+    background-image: var(--azulDegradado);
+    -webkit-background-clip: text; /* Prefijo para compatibilidad en navegadores WebKit (Chrome, Safari) */
+    background-clip: text; /* Aplicar el recorte de fondo al texto */
+    -webkit-text-fill-color: transparent; /* Hacer el texto transparente para que el fondo sea visible */
+}
+
+.header-container img {
+  height: 36px;
+  width: 36px;
+}

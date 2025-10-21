@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Tasks.css";
-import { Bell } from "lucide-react"; // icono similar al de Teams
 
 export default function Tasks() {
   // Ejemplo de estado dinámico (esto luego se reemplaza con la API de Teams)
@@ -34,7 +33,7 @@ export default function Tasks() {
         <div className="tarea-footer">
           <p className="tarea-estado">{tarea.estado}</p>
           <button className="btn-recordatorio">
-            Recordatorio <Bell className="icono-boton" size={18} />
+            Recordatorio 
           </button>
         </div>
       </main>

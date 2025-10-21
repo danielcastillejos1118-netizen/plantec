@@ -2,8 +2,11 @@
   --azulPrincipal: #007bff;
   --azulDegradado: linear-gradient(270deg, #004A99 0%, #007BFF 100%);
   --rojoRealce: #DC3545; 
+  --grisPrincipal: #CBCBCB;
+  --tagGeneral: #FFB300;
 
   --fuentePrincipal: 'Source Sans 3', sans-serif;
+  --fuenteLogo: 'Salsa', cursive;
 }
 
 .App {
