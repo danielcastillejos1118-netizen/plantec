@@ -1,0 +1,89 @@
+@import "../App.css";
+
+.post-element {
+    width: 100%;
+    height: auto;
+    padding: 8px 16px;
+    border-top: 0.8px solid var(--grisPrincipal);
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.post-content-info-user {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-user-text {
+    display: flex;
+}
+
+.user-name, .post-date {
+    font-size: 11px;
+}
+
+.user-name {
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+.post-content-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.post-tittle {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-body-text {
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* El número de líneas que quieres mostrar */
+    line-clamp: 4; /* El número de líneas que quieres mostrar compatibilidad con otros navegadores*/
+    -webkit-box-orient: vertical;
+}
+
+.post-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-interactions {
+    display: flex;
+    gap: 16px;
+}
+
+.post-likes, .post-comments {
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.post-category {
+    font-size: 10px;
+    background-color: var(--tagGeneral);
+    padding: 4px 14px;
+    border-radius: 8px;
+    align-self: center;
+}
+
+.post-category p {
+    color: white;
+}
