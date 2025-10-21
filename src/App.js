@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Tareas from "./pages/Tasks"; // asegúrate de que el archivo se llame igual
 import Home from "./pages/Home";
 import Navbar from "./pages/Navbar";
 
