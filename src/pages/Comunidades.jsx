@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Comunidades.css";
+import Navbar from "./Navbar";
 
 export default function Comunidades() {
   const ir = useNavigate();
@@ -40,16 +41,18 @@ export default function Comunidades() {
 
   return (
     <div className="contenedor-principal">
-     
+      {/* Navbar arriba */}
+      <Navbar />
+
       <div className="encabezado">
         <h1 className="titulo-plantec">Plantec</h1>
         <button
-  className="boton-perfil"
-  onClick={() => ir("/perfil")}
-  title="Ir al perfil"
->
-  <span className="icono-perfil">👤</span>
-</button>
+          className="boton-perfil"
+          onClick={() => ir("/perfil")}
+          title="Ir al perfil"
+        >
+          <span className="icono-perfil">👤</span>
+        </button>
       </div>
 
       <h2 className="subtitulo">Todas las comunidades</h2>

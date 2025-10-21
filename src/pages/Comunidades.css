@@ -2,7 +2,8 @@
 .contenedor-principal {
   background-color: #f9f9f9;
   min-height: 100vh;
-  padding: 20px;
+ 
+ padding-bottom: 100px;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
@@ -22,10 +23,14 @@
 }
 
 .titulo-plantec {
-  font-size: 22px;
+  font-size: 40px;
   font-weight: 700;
-  color: #111;
   margin: 0;
+  background: var(--azulDegradado);
+  background-clip: text; 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  font-family: var(--fuentePrincipal);
 }
 
 .boton-perfil {
@@ -68,6 +73,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+
 }
 
 
@@ -117,29 +123,3 @@
   line-height: 1.4;
 }
 
-@media (max-width: 480px) {
-  .contenedor-principal {
-    padding: 15px;
-  }
-
-  .titulo-plantec {
-    font-size: 24px;
-  }
-
-  .tarjeta-comunidad {
-    padding: 10px;
-  }
-
-  .imagen-comunidad {
-    width: 55px;
-    height: 55px;
-  }
-
-  .nombre-comunidad {
-    font-size: 14px;
-  }
-
-  .descripcion-comunidad {
-    font-size: 12px;
-  }
-}
