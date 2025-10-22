@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ agregado
 import "./Tasks.css";
 
 export default function Tasks() {
-  // Ejemplo de estado dinámico (esto luego se reemplaza con la API de Teams)
   const [tarea, setTarea] = useState({
     titulo: "Tarea 1 Unidad 1",
     fecha: "Vence el 19 de octubre de 2025 23:59",
@@ -11,10 +11,14 @@ export default function Tasks() {
     estado: "Sin entregar",
   });
 
+  const navigate = useNavigate(); // ✅ agregado
+
   return (
     <div className="tareas-container">
       <header className="tareas-header">
-        <span className="back-arrow">←</span>
+        <span className="back-arrow" onClick={() => navigate("/home")}>
+          ←
+        </span>
         <h2>Asignación</h2>
         <img
           src="https://via.placeholder.com/35"
@@ -32,11 +36,10 @@ export default function Tasks() {
 
         <div className="tarea-footer">
           <p className="tarea-estado">{tarea.estado}</p>
-          <button className="btn-recordatorio">
-            Recordatorio 
-          </button>
+          <button className="btn-recordatorio">Recordatorio</button>
         </div>
       </main>
     </div>
   );
 }
+

@@ -1,9 +1,9 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import UserIcon from "../assets/person-circle-outline.svg";
-import LikeICon from "../assets/heart-outline.svg";
+import LikeIcon from "../assets/heart-outline.svg";
 import CommentIcon from "../assets/chatbubble-outline.svg";
-import backIcon from "../assets/arrow-back-outline.svg"; 
+import backIcon from "../assets/arrow-back-outline.svg";
 import "./PostElement.css";
 
 function PostElement({
@@ -26,7 +26,6 @@ function PostElement({
 
     return (
         <section className="post-element">
-            {}
             {isDetailPage && (
                 <button className="back-button" onClick={() => navigate("/home")}>
                     <img src={backIcon} alt="Regresar" />
@@ -47,6 +46,7 @@ function PostElement({
                                 <p className="post-date">{dateFormat}</p>
                             </div>
                         </div>
+
                         <div className="post-content-body">
                             <h2 className="post-tittle">{tittle}</h2>
                             <p className={postBodyClass}>{body}</p>
@@ -56,7 +56,7 @@ function PostElement({
                     <div className="post-bottom">
                         <div className="post-interactions">
                             <div className="post-likes">
-                                <img src={LikeICon} alt="Like Icon" />
+                                <img src={LikeIcon} alt="Like Icon" />
                                 <p>{likes}</p>
                             </div>
                             <div className="post-comments">
@@ -64,17 +64,12 @@ function PostElement({
                                 <p>{comments}</p>
                             </div>
                         </div>
-                        <div className="post-comments">
-                            <img src={CommentIcon} alt="Comment Icon" />
-                            <p>{comments}</p>
+                        <div className="post-category">
+                            <p>{category}</p>
                         </div>
                     </div>
-                    <div className="post-category">
-                        <p>{category}</p>
-                    </div>
                 </div>
-            </div>
-            
+            </Link> {/* 👈 Aquí sí se cierra correctamente */}
         </section>
     );
 }

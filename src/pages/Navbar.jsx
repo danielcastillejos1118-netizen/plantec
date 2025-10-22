@@ -41,7 +41,7 @@ function Navbar() {
 
             {/* Crear publicación (puede abrir modal luego) */}
             <div className="nav-item">
-                <Link to="/crear">
+                <Link to="/create-post">
                     <img src={addDefault} alt="Crear" />
                     <p>Crear</p>
                 </Link>

@@ -14,13 +14,17 @@ function Login() {
     e.preventDefault();
     try {
       const data = await loginUser({ correo, contrasena });
+
+      // ✅ Guardar token y usuario
       localStorage.setItem("token", data.token);
+      localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
       setMensaje(`Bienvenido, ${data.usuario.nombre}`);
       console.log("Usuario logueado:", data.usuario);
 
-      
-      navigate("/Home");
+      navigate("/home");
     } catch (error) {
+      console.error("❌ Error al iniciar sesión:", error);
       setMensaje(error.error || "Error al iniciar sesión");
     }
   };

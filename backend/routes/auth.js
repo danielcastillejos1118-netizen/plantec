@@ -1,13 +1,13 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import pool from "../db.js";
+import { pool } from "../db.js"; // ✅ CORREGIDO
 import dotenv from "dotenv";
 
 dotenv.config();
-const router = express.Router();
+const router = express.Router(); // ⬅️ DECLARADO AQUÍ
 
-// Registro (SignUp)
+// 🧩 Registro (SignUp)
 router.post("/register", async(req, res) => {
     const { nombre, correo, contrasena } = req.body;
 
@@ -19,16 +19,16 @@ router.post("/register", async(req, res) => {
         );
 
         res.status(201).json({
-            message: "Usuario registrado correctamente",
+            message: "✅ Usuario registrado correctamente",
             user: result.rows[0],
         });
     } catch (error) {
-        console.error(error);
+        console.error("❌ Error al registrar usuario:", error);
         res.status(500).json({ error: "Error al registrar usuario" });
     }
 });
 
-// Login
+// 🔐 Inicio de sesión (Login)
 router.post("/login", async(req, res) => {
     const { correo, contrasena } = req.body;
 
@@ -51,7 +51,7 @@ router.post("/login", async(req, res) => {
         );
 
         res.json({
-            message: "Inicio de sesión exitoso",
+            message: "✅ Inicio de sesión exitoso",
             token,
             usuario: {
                 id: usuario.id_usuario,
@@ -60,11 +60,35 @@ router.post("/login", async(req, res) => {
             },
         });
     } catch (error) {
-        console.error("❌ Error en registro:", error);
-        res.status(500).json({ error: error.message || "Error al registrar usuario" });
-        console.error(error);
+        console.error("❌ Error al iniciar sesión:", error);
         res.status(500).json({ error: "Error al iniciar sesión" });
     }
 });
 
-export default router;
+// 🧭 Obtener datos del usuario logueado
+router.get("/me", async(req, res) => {
+    try {
+        const token = req.headers.authorization ?
+            req.headers.authorization.split(" ")[1] :
+            null;
+
+        if (!token) return res.status(401).json({ error: "Token no proporcionado" });
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const result = await pool.query(
+            "SELECT id_usuario, nombre, correo FROM usuarios WHERE id_usuario = $1", [decoded.id_usuario]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        res.json({ usuario: result.rows[0] });
+    } catch (error) {
+        console.error("❌ Error al obtener perfil:", error);
+        res.status(500).json({ error: "Error al obtener perfil del usuario" });
+    }
+});
+
+export default router; // ✅ SIEMPRE AL FINAL

@@ -130,3 +130,25 @@
         padding: 10px 16px;
     }
 }
+
+.chatbot-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #fff;
+    padding-bottom: 60px;
+}
+
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.chatbot-input {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+}

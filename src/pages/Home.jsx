@@ -1,36 +1,109 @@
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
-import Navbar from "./Navbar";
-import Post from "./PostElement";
-import Header from "./Header";
-import { Fragment } from "react";
 
 function Home() {
+  const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]); // 💙
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/posts");
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          const postsConLikes = await Promise.all(
+            data.map(async (post) => {
+              try {
+                const res = await fetch(
+                  `http://localhost:5000/api/likes/${post.id_publicacion}`
+                );
+                const likesData = await res.json();
+                return {
+                  ...post,
+                  likes: parseInt(likesData.total_likes || 0),
+                };
+              } catch {
+                return { ...post, likes: 0 };
+              }
+            })
+          );
+          setPosts(postsConLikes);
+        }
+      } catch (error) {
+        console.error("❌ Error al obtener publicaciones:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const toggleLike = async (id_publicacion) => {
+    if (!usuario) {
+      alert("Debes iniciar sesión para dar like.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/likes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id_usuario: usuario.id,
+          id_publicacion,
+        }),
+      });
+
+      const result = await response.json();
+
+      setPosts((prev) =>
+        prev.map((p) =>
+          p.id_publicacion === id_publicacion
+            ? { ...p, likes: result.liked ? p.likes + 1 : p.likes - 1 }
+            : p
+        )
+      );
+
+      // 💙 Cambiar estado visual del botón
+      setLikedPosts((prev) =>
+        result.liked
+          ? [...prev, id_publicacion]
+          : prev.filter((id) => id !== id_publicacion)
+      );
+    } catch (error) {
+      console.error("❌ Error al dar like:", error);
+    }
+  };
+
   return (
-    <Fragment>  
-      <div className="home-container">
-        <Header />
-        <Post 
-          id={1}
-          userName="Pedro Pérez" 
-          date="Hace 10 mins" 
-          tittle="¿Cuál es la mejor estrategia para balancear estudios, vida social y sueño en la universidad?"
-          body='Una de las cosas más difíciles al iniciar o avanzar en la universidad es encontrar el equilibrio perfecto (o al menos funcional) entre las exigencias académicas, mantener una vida social activa y, por supuesto, dormir lo suficiente.
-          ¿Cuál ha sido tu estrategia personal para manejar este famoso "triángulo imposible" (Estudios - Amigos - Sueño)? ¿Priorizas el sueño y sacrificas salidas, o eres de los que quema pestañas por un buen rato con amigos o estudiando?
-          ¡Comparte tus mejores consejos, trucos de productividad, o incluso tus mayores fallos para que todos podamos aprender!'
-          likes={34}
-          comments={12}
-        ></Post>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-      </div>
-      <Navbar />
-    </Fragment>
+    <div className="home-container">
+      <h2>📢 Publicaciones Recientes</h2>
+
+      {posts.length === 0 ? (
+        <p>No hay publicaciones aún.</p>
+      ) : (
+        posts.map((post) => (
+          <div key={post.id_publicacion} className="post-card">
+            <h3>{post.titulo}</h3>
+            <p>{post.contenido}</p>
+            <div className="post-footer">
+              <span>👤 {post.autor}</span>
+              <span>
+                📅 {new Date(post.fecha_publicacion).toLocaleDateString()}
+              </span>
+            </div>
+            <button
+              className={`like-button ${likedPosts.includes(post.id_publicacion) ? "liked" : ""
+                }`}
+              onClick={() => toggleLike(post.id_publicacion)}
+            >
+              ❤️ {post.likes}
+            </button>
+          </div>
+        ))
+      )}
+    </div>
   );
 }
 

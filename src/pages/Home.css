@@ -1,3 +1,147 @@
-.home-container{
-    padding-bottom: 60px;
+/* ======= Home general ======= */
+
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+.home-container h2 {
+    text-align: center;
+    color: #004aad;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+/* ======= Tarjeta de publicación ======= */
+
+.post-card {
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #e1e4e8;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-card h3 {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.post-card p {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+
+/* ======= Footer de la publicación ======= */
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #555;
+}
+
+
+/* ======= Categoría ======= */
+
+.post-category {
+    display: inline-block;
+    background-color: #004aad;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-top: 6px;
+    align-self: flex-start;
+}
+
+
+/* ======= Estado vacío ======= */
+
+.home-container p {
+    text-align: center;
+    color: #666;
+    font-size: 15px;
+}
+
+
+/* ======= Responsive ======= */
+
+@media (max-width: 600px) {
+    .home-container {
+        padding: 10px;
+    }
+    .post-card {
+        padding: 15px;
+    }
+    .post-card h3 {
+        font-size: 18px;
+    }
+}
+
+.like-button {
+    background-color: #f5f7fa;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.like-button:hover {
+    background-color: #ffeef2;
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.like-button:active {
+    transform: scale(0.95);
+}
+
+.like-button {
+    margin-top: 12px;
+    padding: 6px 12px;
+    background-color: #f1f3f4;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.like-button:hover {
+    background-color: #ffe6eb;
+    color: #e91e63;
+    border-color: #e91e63;
+}
+
+
+/* ❤️ Cuando el usuario ya dio like */
+
+.like-button.liked {
+    background-color: #e91e63;
+    color: white;
+    border-color: #c2185b;
 }
