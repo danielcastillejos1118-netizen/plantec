@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useLocation, useParams } from 'react-router-dom';
 import Post from "./PostElement";
 import Navbar from "./Navbar";
-import Header from "./Header";
+import HeaderBack from "./HeaderBack";
 import { Fragment } from "react";
 
 function PostReadElement(){
@@ -22,7 +22,7 @@ function PostReadElement(){
     return (
         <Fragment>
             <div className="post-read-container">
-                <Header />
+                <HeaderBack text="Publicación" />
                 <Post 
                     id={postDetails.id}
                     imgUser={postDetails.imgUser}

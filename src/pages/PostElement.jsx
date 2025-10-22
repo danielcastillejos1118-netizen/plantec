@@ -3,7 +3,7 @@ import React from "react";
 import UserIcon from "../assets/person-circle-outline.svg";
 import LikeICon from "../assets/heart-outline.svg";
 import CommentIcon from "../assets/chatbubble-outline.svg";
-import backIcon from "../assets/arrow-back-outline.svg"; // 👈 asegúrate de tener este ícono
+import backIcon from "../assets/arrow-back-outline.svg"; 
 import "./PostElement.css";
 
 function PostElement({
@@ -26,7 +26,7 @@ function PostElement({
 
     return (
         <section className="post-element">
-            {/* 🔹 Botón de regreso visible solo en detalle */}
+            {}
             {isDetailPage && (
                 <button className="back-button" onClick={() => navigate("/home")}>
                     <img src={backIcon} alt="Regresar" />
@@ -64,12 +64,17 @@ function PostElement({
                                 <p>{comments}</p>
                             </div>
                         </div>
-                        <div className="post-category">
-                            <p>{category}</p>
+                        <div className="post-comments">
+                            <img src={CommentIcon} alt="Comment Icon" />
+                            <p>{comments}</p>
                         </div>
                     </div>
+                    <div className="post-category">
+                        <p>{category}</p>
+                    </div>
                 </div>
-            </Link>
+            </div>
+            
         </section>
     );
 }
