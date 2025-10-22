@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Comunidades.css";
 import Navbar from "./Navbar";
+import Header from "./Header";
+import { Fragment } from "react";
 
 export default function Comunidades() {
   const ir = useNavigate();
@@ -40,38 +42,29 @@ export default function Comunidades() {
   ];
 
   return (
-    <div className="contenedor-principal">
-      {/* Navbar arriba */}
+    <Fragment>
+      <div className="contenedor-principal">  
+        <Header />
+  
+        <h2 className="subtitulo">Todas las comunidades</h2>
+  
+        <div className="lista-comunidades">
+          {comunidades.map((comunidad, i) => (
+            <button key={i} className="tarjeta-comunidad">
+              <img
+                src={comunidad.imagen}
+                alt={comunidad.nombre}
+                className="imagen-comunidad"
+              />
+              <div className="info-comunidad">
+                <h3 className="nombre-comunidad">{comunidad.nombre}</h3>
+                <p className="descripcion-comunidad">{comunidad.descripcion}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
       <Navbar />
-
-      <div className="encabezado">
-        <h1 className="titulo-plantec">Plantec</h1>
-        <button
-          className="boton-perfil"
-          onClick={() => ir("/perfil")}
-          title="Ir al perfil"
-        >
-          <span className="icono-perfil">👤</span>
-        </button>
-      </div>
-
-      <h2 className="subtitulo">Todas las comunidades</h2>
-
-      <div className="lista-comunidades">
-        {comunidades.map((comunidad, i) => (
-          <button key={i} className="tarjeta-comunidad">
-            <img
-              src={comunidad.imagen}
-              alt={comunidad.nombre}
-              className="imagen-comunidad"
-            />
-            <div className="info-comunidad">
-              <h3 className="nombre-comunidad">{comunidad.nombre}</h3>
-              <p className="descripcion-comunidad">{comunidad.descripcion}</p>
-            </div>
-          </button>
-        ))}
-      </div>
-    </div>
+    </Fragment>
   );
 }

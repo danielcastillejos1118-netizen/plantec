@@ -7,7 +7,7 @@ function Header({userProfile = userIcon}) {
     return (
         <header className="header-container">
             <h1 className="logo-tittle">Plantec</h1>
-            <img src={userProfile} alt="userProfile" />
+            <Link to="/perfil"><img src={userProfile} alt="userProfile" /></Link>
         </header>
     );
 }

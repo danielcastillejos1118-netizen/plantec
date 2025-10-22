@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { Link, useLocation } from 'react-router-dom';
 import "./Navbar.css";
 import homeActive from "../assets/home-sharp-blue.svg";
 import homeDefault from "../assets/home-outline.svg";
@@ -12,21 +11,26 @@ import calendarDefault from "../assets/calendar-outline.svg";
 import calendarActive from "../assets/calendar-sharp-blue.svg";
 
 function Navbar() {
-  const [active, setActive] = useState("home");
+  // Obtener la ruta actual
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // Función auxiliar para determinar si un enlace está activo
+  const isActive = (path) => currentPath === path;
 
   return (
     <div className="navbar">
         <div className="nav-item">
-            <Link to="/" onClick={() => setActive("home")}>
-                <img src={active === "home" ? homeActive : homeDefault} 
+            <Link to="/">
+                <img src={isActive("/") ? homeActive : homeDefault} 
                     alt="Home" 
                 />
                 <p>Inicio</p>
             </Link>
         </div>
         <div className="nav-item">
-            <Link to="/" onClick={() => setActive("comunities")}>
-                <img src={active === "comunities" ? comunityActive : comunityDefault} 
+            <Link to="/comunidades">
+                <img src={isActive("/comunidades") ? comunityActive : comunityDefault} 
                     alt="Comuinity" 
                 />
                 <p>Comunidades</p>
@@ -41,16 +45,16 @@ function Navbar() {
             </Link>
         </div>
         <div className="nav-item">
-            <Link to="/" onClick={() => setActive("chatbot")}>
-                <img src={active === "chatbot" ? chatActive : chatDefault} 
+            <Link to="/">
+                <img src={isActive("/chatbot") ? chatActive : chatDefault} 
                     alt="Chatbot" 
                 />
                 <p>Chatbot</p>
             </Link>
         </div>
         <div className="nav-item">
-            <Link to="/" onClick={() => setActive("calendar")}>
-                <img src={active === "calendar" ? calendarActive : calendarDefault} 
+            <Link to="/">
+                <img src={isActive("/tareas") ? calendarActive : calendarDefault} 
                     alt="Calendar" 
                 />
                 <p>Tareas</p>

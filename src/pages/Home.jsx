@@ -11,13 +11,8 @@ function Home() {
     <Fragment>  
       <div className="home-container">
         <Header />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
         <Post 
+          id={1}
           userName="Pedro Pérez" 
           date="Hace 10 mins" 
           tittle="¿Cuál es la mejor estrategia para balancear estudios, vida social y sueño en la universidad?"
@@ -27,6 +22,12 @@ function Home() {
           likes={34}
           comments={12}
         ></Post>
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
       </div>
       <Navbar />
     </Fragment>

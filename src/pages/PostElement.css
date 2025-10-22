@@ -52,6 +52,11 @@
 .post-body-text {
     font-size: 12px;
     overflow: hidden;
+}
+
+.post-body-text-truncate {
+    font-size: 12px;
+    overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4; /* El número de líneas que quieres mostrar */
     line-clamp: 4; /* El número de líneas que quieres mostrar compatibilidad con otros navegadores*/
@@ -86,4 +91,9 @@
 
 .post-category p {
     color: white;
+}
+
+.post-link-wrapper {
+    text-decoration: none;
+    color: inherit;
 }
