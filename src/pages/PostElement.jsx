@@ -1,35 +1,43 @@
-import { Link, useLocation } from 'react-router-dom';
-import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
 import UserIcon from "../assets/person-circle-outline.svg";
 import LikeICon from "../assets/heart-outline.svg";
 import CommentIcon from "../assets/chatbubble-outline.svg";
+import backIcon from "../assets/arrow-back-outline.svg"; // 👈 asegúrate de tener este ícono
 import "./PostElement.css";
 
 function PostElement({
     id,
-    imgUser = UserIcon, 
-    userName = "Usuario Anónimo", 
-    date = "01/01/2024", 
-    tittle = "Título del Post", 
-    body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra nunc porttitor, tincidunt sem eget, ultricies ipsum. Donec dui purus, vulputate at rhoncus in, sollicitudin nec orci. Nullam eleifend erat tristique neque congue varius. Nullam a rhoncus tortor. Ut lobortis nisl non dolor vehicula dapibus. Integer nisi est, hendrerit pharetra nulla ac, consectetur ornare justo. Praesent et libero vitae mi sodales imperdiet. Aliquam erat volutpat.",
-    likes = 0, 
-    comments = 0, 
+    imgUser = UserIcon,
+    userName = "Usuario Anónimo",
+    date = "01/01/2024",
+    tittle = "Título del Post",
+    body = "Lorem ipsum dolor sit amet...",
+    likes = 0,
+    comments = 0,
     category = "General",
-    /*isDetailPage = false*/
-}){
+}) {
     const dateFormat = `• ${date}`;
     const location = useLocation();
+    const navigate = useNavigate();
     const isDetailPage = location.pathname === `/post/${id}`;
-    const postBodyClass = isDetailPage 
-        ? 'post-body-text' 
-        : 'post-body-text-truncate';
-    const postData = {
-    id, imgUser, userName, date, tittle, body, likes, comments, category
-    };
-    
+    const postBodyClass = isDetailPage ? "post-body-text" : "post-body-text-truncate";
+    const postData = { id, imgUser, userName, date, tittle, body, likes, comments, category };
+
     return (
         <section className="post-element">
-            <Link to={isDetailPage ? "#" : `/post/${id}`} className="post-link-wrapper" state={{ postDetails: postData }}> 
+            {/* 🔹 Botón de regreso visible solo en detalle */}
+            {isDetailPage && (
+                <button className="back-button" onClick={() => navigate("/home")}>
+                    <img src={backIcon} alt="Regresar" />
+                </button>
+            )}
+
+            <Link
+                to={isDetailPage ? "#" : `/post/${id}`}
+                className="post-link-wrapper"
+                state={{ postDetails: postData }}
+            >
                 <div className="post-container">
                     <div className="post-content">
                         <div className="post-content-info-user">
@@ -44,6 +52,7 @@ function PostElement({
                             <p className={postBodyClass}>{body}</p>
                         </div>
                     </div>
+
                     <div className="post-bottom">
                         <div className="post-interactions">
                             <div className="post-likes">

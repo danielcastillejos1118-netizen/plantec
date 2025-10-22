@@ -1,5 +1,4 @@
 @import "../App.css";
-
 .post-element {
     width: 100%;
     height: auto;
@@ -29,7 +28,8 @@
     display: flex;
 }
 
-.user-name, .post-date {
+.user-name,
+.post-date {
     font-size: 11px;
 }
 
@@ -58,8 +58,10 @@
     font-size: 12px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* El número de líneas que quieres mostrar */
-    line-clamp: 4; /* El número de líneas que quieres mostrar compatibilidad con otros navegadores*/
+    -webkit-line-clamp: 4;
+    /* El número de líneas que quieres mostrar */
+    line-clamp: 4;
+    /* El número de líneas que quieres mostrar compatibilidad con otros navegadores*/
     -webkit-box-orient: vertical;
 }
 
@@ -73,7 +75,8 @@
     gap: 16px;
 }
 
-.post-likes, .post-comments {
+.post-likes,
+.post-comments {
     font-size: 12px;
     cursor: pointer;
     display: flex;
