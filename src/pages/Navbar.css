@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 16px;
+    padding: 8px 8px;
     position: fixed;
     bottom: 0;
     border-top: 1px solid var(--grisPrincipal);
@@ -17,7 +17,7 @@
     font-family: 'Source Sans 3', sans-serif;
     font-size: 11px;
     min-width: 68px;
-    width: calc(20% - 16px);
+    width: 20%;
     overflow: hidden;
 }
 
