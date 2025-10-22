@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://plantec-backend.onrender.com/api/auth";
 
 // Registrar usuario
 export const registerUser = async(userData) => {
@@ -17,15 +17,13 @@ export const registerUser = async(userData) => {
 };
 
 // Iniciar sesión
-export const loginUser = async(credentials) => {
-    try {
-        const response = await axios.post(`${API_URL}/login`, credentials);
-        return response.data;
-    } catch (error) {
-        if (error.response && error.response.data) {
-            throw error.response.data;
-        } else {
-            throw { error: "Error al iniciar sesión" };
-        }
-    }
+export const loginUser = async(credenciales) => {
+    const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credenciales),
+    });
+
+    if (!response.ok) throw new Error("Error al iniciar sesión");
+    return await response.json();
 };

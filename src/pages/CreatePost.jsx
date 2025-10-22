@@ -27,11 +27,13 @@ function CreatePost() {
         };
 
         try {
-            const response = await fetch("http://localhost:5000/api/posts", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(nuevaPublicacion),
-            });
+            // ✅ Ejemplo correcto
+            const response = await fetch("https://plantec-backend.onrender.com/api/posts"
+                , {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(nuevaPublicacion),
+                });
 
             if (response.ok) {
                 alert("✅ Publicación creada correctamente");

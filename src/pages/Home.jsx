@@ -3,22 +3,25 @@ import "./Home.css";
 
 function Home() {
   const [posts, setPosts] = useState([]);
-  const [likedPosts, setLikedPosts] = useState([]); // 💙
+  const [likedPosts, setLikedPosts] = useState([]);
   const usuario = JSON.parse(localStorage.getItem("usuario"));
 
+  // 🌐 URL base de tu backend en Render
+  const API_BASE = "https://plantec-backend.onrender.com/api";
+
+  // 🔹 Cargar publicaciones
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/posts");
+        const response = await fetch(`${API_BASE}/posts`);
         const data = await response.json();
 
         if (Array.isArray(data)) {
+          // 🔹 Traer también la cantidad de likes por publicación
           const postsConLikes = await Promise.all(
             data.map(async (post) => {
               try {
-                const res = await fetch(
-                  `http://localhost:5000/api/likes/${post.id_publicacion}`
-                );
+                const res = await fetch(`${API_BASE}/likes/${post.id_publicacion}`);
                 const likesData = await res.json();
                 return {
                   ...post,
@@ -30,6 +33,8 @@ function Home() {
             })
           );
           setPosts(postsConLikes);
+        } else {
+          console.warn("⚠️ El backend no devolvió un array:", data);
         }
       } catch (error) {
         console.error("❌ Error al obtener publicaciones:", error);
@@ -39,6 +44,7 @@ function Home() {
     fetchPosts();
   }, []);
 
+  // ❤️ Función para dar/quitar like
   const toggleLike = async (id_publicacion) => {
     if (!usuario) {
       alert("Debes iniciar sesión para dar like.");
@@ -46,7 +52,7 @@ function Home() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/likes", {
+      const response = await fetch(`${API_BASE}/likes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -57,6 +63,7 @@ function Home() {
 
       const result = await response.json();
 
+      // 🔄 Actualiza el contador visualmente
       setPosts((prev) =>
         prev.map((p) =>
           p.id_publicacion === id_publicacion
@@ -65,7 +72,7 @@ function Home() {
         )
       );
 
-      // 💙 Cambiar estado visual del botón
+      // 💙 Cambiar estado del botón
       setLikedPosts((prev) =>
         result.liked
           ? [...prev, id_publicacion]
@@ -76,6 +83,7 @@ function Home() {
     }
   };
 
+  // 📱 Renderizado visual
   return (
     <div className="home-container">
       <h2>📢 Publicaciones Recientes</h2>
@@ -87,12 +95,14 @@ function Home() {
           <div key={post.id_publicacion} className="post-card">
             <h3>{post.titulo}</h3>
             <p>{post.contenido}</p>
+
             <div className="post-footer">
               <span>👤 {post.autor}</span>
               <span>
                 📅 {new Date(post.fecha_publicacion).toLocaleDateString()}
               </span>
             </div>
+
             <button
               className={`like-button ${likedPosts.includes(post.id_publicacion) ? "liked" : ""
                 }`}
