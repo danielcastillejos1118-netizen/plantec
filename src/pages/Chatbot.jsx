@@ -24,20 +24,25 @@ function Chatbot() {
         setInput("");
 
         try {
-            const response = await axios.post("http://localhost:5000/api/chatbot/ask", {
-                pregunta: input,
-            });
+            // ✅ URL del backend en Render
+            const response = await axios.post(
+                "https://plantec-backend.onrender.com/api/chatbot/ask",
+                { pregunta: input }
+            );
 
             const botMessage = {
                 sender: "bot",
-                text: response.data.respuesta || "No tengo una respuesta registrada aún 🤔",
+                text:
+                    response.data.respuesta ||
+                    "🤔 No tengo una respuesta registrada aún.",
             };
+
             setMessages((prev) => [...prev, botMessage]);
         } catch (error) {
-            console.error("Error de conexión:", error);
+            console.error("⚠️ Error de conexión con el servidor:", error);
             setMessages((prev) => [
                 ...prev,
-                { sender: "bot", text: "⚙️ Error de conexión con el servidor." },
+                { sender: "bot", text: "⚙️ Error al conectar con el servidor." },
             ]);
         }
     };
@@ -49,7 +54,9 @@ function Chatbot() {
     return (
         <div className="chatbot-container">
             <div className="chatbot-header">
-                <Link to="/home" className="back-home">← Chatbot Plantec</Link>
+                <Link to="/home" className="back-home">
+                    ← Chatbot Plantec
+                </Link>
             </div>
 
             <div className="chatbot-messages">
