@@ -29,8 +29,8 @@ function PostElement({
     
     return (
         <section className="post-element">
-            <Link to={isDetailPage ? "#" : `/post/${id}`} className="post-link-wrapper" state={{ postDetails: postData }}> 
-                <div className="post-container">
+            <div className="post-container">
+                <Link to={isDetailPage ? "#" : `/post/${id}`} className="post-link-wrapper" state={{ postDetails: postData }}> 
                     <div className="post-content">
                         <div className="post-content-info-user">
                             <img src={imgUser} alt="User Icon" />
@@ -44,23 +44,24 @@ function PostElement({
                             <p className={postBodyClass}>{body}</p>
                         </div>
                     </div>
-                    <div className="post-bottom">
-                        <div className="post-interactions">
-                            <div className="post-likes">
-                                <img src={LikeICon} alt="Like Icon" />
-                                <p>{likes}</p>
-                            </div>
-                            <div className="post-comments">
-                                <img src={CommentIcon} alt="Comment Icon" />
-                                <p>{comments}</p>
-                            </div>
+                </Link>
+                <div className="post-bottom">
+                    <div className="post-interactions">
+                        <div className="post-likes">
+                            <img src={LikeICon} alt="Like Icon" />
+                            <p>{likes}</p>
                         </div>
-                        <div className="post-category">
-                            <p>{category}</p>
+                        <div className="post-comments">
+                            <img src={CommentIcon} alt="Comment Icon" />
+                            <p>{comments}</p>
                         </div>
                     </div>
+                    <div className="post-category">
+                        <p>{category}</p>
+                    </div>
                 </div>
-            </Link>
+            </div>
+            
         </section>
     );
 }
