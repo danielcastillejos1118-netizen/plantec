@@ -7,11 +7,9 @@ import Tareas from "./pages/Tasks";
 import Home from "./pages/Home";
 import Navbar from "./pages/Navbar";
 import Post from "./pages/PostReadElement";
-import './App.css';
-import Tasks from "./pages/Tasks";
 import PostElement from "./pages/PostElement";
 import Chatbot from "./pages/Chatbot";
-
+import "./App.css";
 
 function App() {
     const postId = 1; // Example post ID
@@ -26,38 +24,34 @@ function App() {
         /> <
         Route path = "/login"
         element = { < Login / > }
-        />  <
+        /> <
         Route path = "/signup"
         element = { < SignUp / > }
         /> <
         Route path = "/perfil"
         element = { < Perfil / > }
-        />  <
+        /> <
         Route path = "/comunidades"
         element = { < Comunidades / > }
-        />  <
-        Route path = "/Home"
+        /> <
+        Route path = "/tareas"
+        element = { < Tareas / > }
+        /> <
+        Route path = "/home"
         element = { < Home / > }
-        />  <
-        Route path = "/Perfil"
-        element = { < Perfil / > }
-        />  <
-        Route path = "/Tareas"
-        element = { < Tasks / > }
-        />  <
-        Route path = "/crear"
+        /> <
+        Route path = "/post/:id"
+        element = { < Post / > }
+        /> <
+        Route path = "/postelement"
         element = { < PostElement / > }
-        />  <
-        Route path = "/Chatbot"
+        /> <
+        Route path = "/chatbot"
         element = { < Chatbot / > }
         /> <
-        Route path = { `/post/${postId}` }
-        element = { < Post / > }
-        />  < /
-        Routes > <
+        /Routes> <
         /div>
     );
-
 }
 
 export default App;
